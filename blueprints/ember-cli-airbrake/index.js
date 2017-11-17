@@ -5,6 +5,8 @@ module.exports = {
   normalizeEntityName: function() {},
 
   afterInstall: function() {
-    return this.addBowerPackageToProject('airbrake-js-client', 'airbrake-js#~0.5.8');
+    return this.addPackagesToProject([
+      { name: 'airbrake-js', target: '0.9.8' }
+    ]);
   }
 };
