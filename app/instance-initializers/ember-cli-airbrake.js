@@ -34,7 +34,16 @@ function initialize(instance) {
 
   let notifyFn = (error) => {
     let airbrake = lookup('service:airbrake');
-    airbrake.notify(error);
+
+    switch(Ember.typeOf(error)) {
+    case 'object':
+    case 'array':
+      airbrake.notify(JSON.stringify(error));
+    break;
+
+    default:
+      airbrake.notify(error);
+    }
   };
 
   if (!!config.airbrake) {
