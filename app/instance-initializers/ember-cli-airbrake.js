@@ -4,7 +4,9 @@ import config from '../config/environment';
 function registerEmberOnError(notifyFn) {
   let originalOnError = Ember.onerror || Ember.K;
   Ember.onerror = function(err) {
-    originalOnError(err);
+    if (originalOnError)
+      originalOnError(err);
+
     notifyFn(err);
   };
 }
